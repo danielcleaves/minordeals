@@ -1,0 +1,38 @@
+<div class="hero">
+	<div class="container">
+		<div class="row">
+			<div class="hero-heading">
+				What items do you need? <br/>
+				Find it on MinorDeals
+				<p>Look. Find. Get</p>
+			</div>
+		</div>
+		<%= render 'search/form' %>
+	</div>
+</div>
+<div class="container section">
+	<h1>
+		Newest Deals
+	</h1>
+	<div class="row">
+		<% @services.each do |service| %>
+		<div class="col-md-3">
+			<%= link_to(service) do %>
+			<div class="deal-card">
+				<center><%= image_tag service.image.url(:small)%></center>
+				<h4>
+					<%= service.title %>
+				</h4>
+				<h3>
+					$<%= service.price %>
+				</h3>
+			</div>
+			<% end %>
+		</div>
+		<% end %>
+	</div>
+</div>
+
+
+
+

@@ -1,0 +1,24 @@
+<div class ="panel panel-default">
+	<div class="panel-heading">
+		<h2>Add a Review</h2>
+	</div>
+	<div class="panel-body">
+		<%= form_for([@service, @service.reviews.new]) do |f| %>
+		<div id="star-rating"></div></br/>
+  		<div class="form-group">
+          <%= f.text_area :comment, rows:3, class: "form-control" %><br/>
+          <%= f.hidden_field :service_id, value: @service.id %>
+          <%= f.hidden_field :service_id, value: @service.id %>
+          <%= f.submit "Add Review", class:"btn pull-right" %>
+        </div>
+		<% end %>
+	</div>
+</div>
+<script>
+	$('#star-rating').raty({
+		path: '/assets',
+		scoreName: 'review[star]',
+		score: 1
+		
+	});
+</script>

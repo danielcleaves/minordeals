@@ -1,0 +1,32 @@
+<div class="container section">
+
+  <h1>Services Search</h1>
+  <%= render 'search/form' %>
+  <br><br>
+  <div class="row">
+    <% if @services.blank? %>
+      <center>
+        <h4>No services found matching <%= params[:q] %>.</h4>
+      </center>
+    <% end %>
+  </div>
+
+  <div class="row">
+      <% @services.each do |service| %>
+      <div class="col-md-3">
+        <%= link_to(service) do %>
+        <div class="deal-card">
+          <center><%= image_tag service.image.url(:small)%></center>
+          <h4>
+            <%= service.title %>
+          </h4>
+          <h3>
+            $<%= service.price %>
+          </h3>
+        </div>
+        <% end %>
+      </div>
+      <% end %>
+  </div>
+
+</div>

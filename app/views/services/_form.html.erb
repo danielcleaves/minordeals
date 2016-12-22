@@ -1,0 +1,47 @@
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h2><%= @service.new_record? ?  "Create your deal": "Edit your Deal" %></h2> 
+		</div>
+		<div class="panel-body">
+			<%= form_for @service do |f| %>
+				<% if @service.errors.any? %> 
+					<div class="alert alert-info">
+						<h3>
+							Fix the following <%= pluralize(@service.errors.count, "error") %> before continuing: 
+						</h3>
+						<ul>
+							<% @service.errors.full_messages.each do |msg| %>
+								<li><%= msg %></li>
+							<% end %> 
+						</ul>
+					</div>
+				<% end %>
+
+				<div class="form-group">
+					<label>Deal Title</label>
+					<%= f.text_area :title, placeholder: "Ex: I will do something I am really good at", rows: "2", class:"form-control" %>
+				</div>
+				<div class="form-group">
+					<label>Description</label>
+					<%= f.text_area :description, rows: "5", class:"form-control" %>
+				</div>
+				<div class="form-group">
+					<label>Pricing</label>
+					<div class="select-control">
+						<%= f.select :price, [["$10", "10"], ["$20", "20"], ["$30", "30"], ["$40", "40"]], class:"form-control" %>
+					</div>					
+				</div>
+				<div class="form-group">
+					<label>Requirements</label>
+					<%= f.text_area :requirements, rows: "5", class:"form-control" %>
+				</div>
+				<div class="form-group">
+					<label>Add Photo</label>
+					<%= f.file_field :image %>
+				</div>
+				<hr>
+
+				<%= f.submit @service.new_record? ?  "Publish Deal": "Update Deal", class:"btn btn-primary" %>
+			<% end %>
+		</div>
+	</div>
